@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Claims</title>
+		<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	</head>
+	<body>
+	<div class="container-fluid text-center">
+		<div><h2>Management Claims</h2></div>
+		
+	</div>
+	<div class="container-fluid text-right">
+		<th:block th:each="claim1 : ${dpndt}"> 
+				<input type="hidden" th:field="*{customerId}" th:value="${claim1.customers.customerId}"/>
+		</th:block>
+		<a style="background-color: #f8f9fa; font-size: 2rem; border-radius: 1rem; margin: 1rem; 
+	        box-shadow: 1rem 1rem 0.5rem lightblue; padding: 1rem; text-decoration:none;" 
+			th:href="@{'/claim/new/'+${customerId}}">New Claim</a>
+	</div>
+	<div th:if="${message}" class="alert alert-success text-center">
+	[[${message}]]
+	</div>
+	<br><br>
+	
+	<div class="container-fluid text-center table-responsive">
+		<table class="table table-bordered table-striped table table-hover">
+			<thead class="thead-dark">
+			<tr>
+				<!-- <th>Customer</th>
+				<th>Dependent ID</th>   -->
+				<th style="width:5rem">Claim Number</th>	
+				<th style="width:75rem">Description</th>
+				<!-- 	
+				<th>Last Name</th>
+				<th>Email Address</th>
+				<th>Phone Number</th>  -->
+				<th style="width:10rem">Claim Active</th>	
+				<th></th>						
+			</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="dependent : ${dpndt}"> 
+				<input type="hidden" th:field="*{customerId}" th:value="${dependent.customers.customerId}"/>
+				<tr>
+					<!--  <td>[[${dependent.customers.customerId}]]</td> -->
+					<td>[[${dependent.claimId}]]</td> 
+					<td>[[${dependent.ClaimDescription}]]</td>
+					<td><input type="checkbox"  th:checked="${dependent.claimActive}" disabled/></td>
+					<td>
+						<a style="background-color: #f8f9fa; font-size: 1rem; border-radius: .2rem; margin: .2rem; 
+	        				box-shadow: 0.1rem 0.1rem 0.5rem lightblue; padding: .5rem; text-decoration:none;" 
+							th:href="@{'/claim/edit/' + ${dependent.claimId}+'/'+${dependent.customers.customerId}}">Edit</a>
+						<!--  
+						<a class="h5 mr-3" th:href="@{'/customers/delete/' + ${customer.customerId}}">Delete</a>
+						-->
+						<a style="background-color: #f8f9fa; font-size: 1rem; border-radius: .2rem; margin: .2rem; 
+	        				box-shadow: 0.1rem 0.1rem 0.5rem lightblue; padding: .5rem; text-decoration:none;"  
+							th:href="@{'/claim/edit/' + ${dependent.claimId}+'/'+${dependent.customers.customerId}}">Upload Files</a>
+						
+					</td>
+				</tr>	
+				</th:block>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<button type="button" class="btn btn-secondary m-4" onclick="cancelForm()">Exit</button>
+	</div>
+			<script type="text/javascript">
+			function cancelForm() {
+				window.location="[[@{/}]]";
+			}
+		</script>		
+	</body>
+</html>

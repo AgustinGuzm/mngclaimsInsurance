@@ -1,0 +1,25 @@
+package com.hexa.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
+
+//import com.hexa.model.customer;
+import com.hexa.model.dependent;
+//import com.hexa.repositories.CustomerR;
+import com.hexa.repositories.DependentRepository;
+
+@Service
+public class DependentService {
+	
+	@Autowired private DependentRepository repo;
+	
+	public List<dependent> ListAllDependent(){
+		return repo.findAll();
+	}
+	public List<dependent> findBycustomerId(@Param("customerId") Integer customerId){
+		return repo.findBycustomerId(customerId);
+	}
+}

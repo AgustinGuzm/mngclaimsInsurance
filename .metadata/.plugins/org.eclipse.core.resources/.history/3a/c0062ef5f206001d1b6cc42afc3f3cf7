@@ -1,0 +1,154 @@
+package com.hexa.model;
+
+
+
+
+import javax.persistence.Entity;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "claims")
+public class claims {
+	
+	// Define fields to use in the table dependents
+	@Id //primary key for  dependents id
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //auto generate the value for id
+	private Integer claimsId; //Id to identify the dependent
+	
+	//reference at parent table 
+//	@ManyToOne //relationship many dependents to one customer
+//	private customer customers;
+	
+	@ManyToOne //(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //relationship many claims to one customer
+	@JoinColumn(name = "customerId")
+	private customer customers;
+	
+	private String  ClaimDescription; //dependent first name
+//	private String  middleName;//dependent middle name
+//	private String  lastName;//dependent last name
+//	private String  email;//dependent email address
+//	private String  phoneNumber;//dependent phone number
+	private Boolean claimActive;// determine if the claim is active or discarded
+	
+	
+
+	
+	
+	/**
+	 * 
+	 */
+	public claims() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	/**
+	 * @param claimsId
+	 * @param customers
+	 * @param claimDescription
+	 * @param claimActive
+	 */
+	public claims(Integer claimsId, customer customers, String claimDescription, Boolean claimActive) {
+		super();
+		this.claimsId = claimsId;
+		this.customers = customers;
+		ClaimDescription = claimDescription;
+		this.claimActive = claimActive;
+	}
+
+
+	public Integer getClaimsId() {
+		return claimsId;
+	}
+	public void setClaimsId(Integer claimsId) {
+		this.claimsId = claimsId;
+	}
+	public customer getCustomers() {
+		return customers;
+	}
+	public void setCustomers(customer customers) {
+		this.customers = customers;
+	}
+	public String getClaimDescription() {
+		return ClaimDescription;
+	}
+	public void setClaimDescription(String claimDescription) {
+		ClaimDescription = claimDescription;
+	}
+	public Boolean getClaimActive() {
+		return claimActive;
+	}
+	public void setClaimActive(Boolean claimActive) {
+		this.claimActive = claimActive;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ClaimDescription == null) ? 0 : ClaimDescription.hashCode());
+		result = prime * result + ((claimActive == null) ? 0 : claimActive.hashCode());
+		result = prime * result + ((claimsId == null) ? 0 : claimsId.hashCode());
+		result = prime * result + ((customers == null) ? 0 : customers.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		claims other = (claims) obj;
+		if (ClaimDescription == null) {
+			if (other.ClaimDescription != null)
+				return false;
+		} else if (!ClaimDescription.equals(other.ClaimDescription))
+			return false;
+		if (claimActive == null) {
+			if (other.claimActive != null)
+				return false;
+		} else if (!claimActive.equals(other.claimActive))
+			return false;
+		if (claimsId == null) {
+			if (other.claimsId != null)
+				return false;
+		} else if (!claimsId.equals(other.claimsId))
+			return false;
+		if (customers == null) {
+			if (other.customers != null)
+				return false;
+		} else if (!customers.equals(other.customers))
+			return false;
+		return true;
+	}
+
+
+	@Override
+	public String toString() {
+		return "claims [claimsId=" + claimsId + ", customers=" + customers + ", ClaimDescription=" + ClaimDescription
+				+ ", claimActive=" + claimActive + "]";
+	}
+	
+
+	
+
+}

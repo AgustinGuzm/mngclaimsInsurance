@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="ISO-8859-1">
+		<!--  <title>[[${pageTitle}]]</title> -->
+		<title>New Dependent</title>
+		<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	</head>
+	<body>
+		<div class="container-fluid text-center">
+		
+			<div th:if="${dpndt.claimId == null}"><h2>New Claim</h2></div>
+			<div th:unless="${dpndt.claimId == null}"><h2>Update Claim</h2></div>
+			
+			<form th:action="@{/dependent/save}"  th:object="${dpndt}" method="post"
+				style="background-color: #f8f9fa; 
+					max-width: 40%; 
+					margin: 0 auto; 
+					box-shadow: 1.5rem 1.5rem .1rem lightblue; 
+					padding: .5rem;
+					border-radius: 1rem;"> 
+
+				<!-- <th:block th:each="dependent2 : ${dpndt}"> 
+						<input type="hidden" th:field="*{customerId}" th:value="${cutomer_id}"/>
+					 </th:block> 
+				
+				<input type="hidden" th:field="*{customerId}" th:value="${cutomer_id}"/>
+				-->
+				<input type="hidden" th:field="*{claimId}" th:value="${dpndt.claimId}" /> 
+				<!--  <input type="hidden" th:field="*{customerId}" th:value="${dpndt.customers}"/> -->
+				<div class=" rounded p-3 text-left">
+					
+				
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">Description:</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{ClaimDescription}" 
+								class="from-control " required minlength="2" maxlength="245"/>
+						 	<br>
+
+         						<textarea rows = "4" cols = "40" name = "description">
+            					Enter details here...
+         						</textarea>
+        					<br>
+						</div>
+					</div>
+					<!--  
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">Middle Name:</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{middleName}" 
+								class="from-control" required  minlength="3" maxlength="45"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">Last Name:</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{lastName}" 
+								class="from-control" required minlength="2" maxlength="45"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">Email:</label>
+						<div class="col-sm-8">
+							<input type="email" th:field="*{email}" 
+								class="from-control" required minlength="8" maxlength="45"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">Phone Number:</label>
+						<div class="col-sm-8">
+						<input type="tel" th:field="*{phoneNumber}" 
+							class="from-control" required minlength="10" maxlength="12"/>
+						</div>
+					</div>
+			 			-->		
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label">Submitted:</label>
+						<div class="col-sm-8">
+							<input type="checkbox"  th:field="*{claimActive}" class="from-control"/>
+						</div>
+					</div>
+
+					<div  style="display: none;" class="form-group row">
+						<label class="col-sm-4 col-form-label">Customer:</label>
+						<!--<div class="col-sm-8">   style="display: none;"    -->
+						<div style="display: none;">
+							<select th:field="*{customers}" class="from-control " th:disable=true>
+								<th:block th:each="cust :${liscustomers}">
+									
+									<option th:text="${cust.customerId}+' '+${cust.firstName}" th:value="${cust.customerId}" th:disable=true/> 
+									<!-- 
+									<div class="col-sm-8">
+									<input type="text"  th:value="${cust.customerId}" class="from-control" th:disable/>
+									</div>
+									 -->
+								</th:block>
+							</select>
+						</div>
+					</div>	
+
+			
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary m-2">Save</button>
+						<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+					</div>
+					
+				</div>
+			</form>
+			<!-- 
+			    //window.location="[[@{'/claim/' +${dpndt.claimId}}]]";
+				//@{'/customers/edit/' + ${customer.customerId}}
+			 -->
+		</div>	
+		<script type="text/javascript">
+			function cancelForm() {
+
+				window.location="[[@{/}]]";
+			}
+		</script>		
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html >
+<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Management</title>
+  
+<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+<link rel="stylesheet" type="text/css" th:href="@{/style/style.css}">
+
+</head>
+
+<body style="background: #f4f4f4;">
+<div class="container-fluid text-center" style="padding: 0.5rem; border-radius:3rem">
+    <h1 style="background-color: rgb(192, 192, 192) ; ">Customer Management Service</h1>
+</div>
+<nav>
+	<a style="background-color: #f8f9fa; 
+		font-size: 2rem; 
+		border-radius: 1rem; 
+		margin: 3rem; 
+	    box-shadow: 1rem 1rem 0.5rem lightblue; 
+	    padding: 1rem; 
+	    text-decoration:none;"  
+	    th:href="@{/customers/?sort-field=id&sort-dir=asc}">Customer</a>
+    &nbsp;&nbsp;&nbsp;
+    <!-- 
+    <a style="background-color: #f8f9fa;
+    	 font-size: 2rem; 
+    	 border-radius: 1rem; 
+    	 margin: 3rem; 
+	    box-shadow: 1rem 1rem 0.5rem lightblue; 
+	    padding: 1rem; 
+	    text-decoration:none;"  
+    	th:href="@{/dependent}">Dependent</a>
+    	-->
+</nav>
+
+
+
+</body>
+</html>
