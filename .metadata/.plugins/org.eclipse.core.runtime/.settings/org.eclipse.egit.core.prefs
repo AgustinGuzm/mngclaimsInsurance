@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=C\:\\73711_java_claims\\mngcustomer\\.git;
-GitRepositoriesView.GitDirectories.relative=mngcustomer\\.git;
+GitRepositoriesView.GitDirectories=C\:\\73711_claims\\mngclaimsInsurance\\mngcustomer\\.git;C\:\\73711_claims\\mngclaimsInsurance\\.git;
+GitRepositoriesView.GitDirectories.relative=mngcustomer\\.git;.git;
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

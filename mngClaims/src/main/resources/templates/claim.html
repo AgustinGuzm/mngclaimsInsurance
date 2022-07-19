@@ -27,36 +27,28 @@
 		<table class="table table-bordered table-striped table table-hover">
 			<thead class="thead-dark">
 			<tr>
-				<!-- <th>Customer</th>
-				<th>Dependent ID</th>   -->
 				<th style="width:10rem">Claim Number</th>	
 				<th style="width:75rem">Description</th>
-				<!-- 	
-				<th>Last Name</th>
-				<th>Email Address</th>
-				<th>Phone Number</th>  -->
 				<th style="width:10rem">Claim Active</th>	
 				<th></th>						
 			</tr>
 			</thead>
 			<tbody>
-				<th:block th:each="dependent : ${dpndt}"> 
-				<input type="hidden" th:field="*{customerId}" th:value="${dependent.customers.customerId}"/>
+				<th:block th:each="claimd : ${dpndt}"> 
+				<input type="hidden" th:field="*{customerId}" th:value="${claimd.customers.customerId}"/>
 				<tr>
-					<!--  <td>[[${dependent.customers.customerId}]]</td> -->
-					<td>[[${dependent.claimId}]]</td> 
-					<td>[[${dependent.ClaimDescription}]]</td>
-					<td><input type="checkbox"  th:checked="${dependent.claimActive}" disabled/></td>
+					<!--  <td>[[${claimd.customers.customerId}]]</td> -->
+					<td>[[${claimd.claimId}]]</td> 
+					<td>[[${claimd.ClaimDescription}]]</td>
+					<td><input type="checkbox"  th:checked="${claimd.claimActive}" disabled/></td>
 					<td>
 						<a style="background-color: #f8f9fa; font-size: 1rem; border-radius: .2rem; margin: .2rem; 
 	        				box-shadow: 0.1rem 0.1rem 0.5rem lightblue; padding: .5rem; text-decoration:none;" 
-							th:href="@{'/claim/edit/' + ${dependent.claimId}+'/'+${dependent.customers.customerId}}">Edit</a>
-						<!--  
-						<a class="h5 mr-3" th:href="@{'/customers/delete/' + ${customer.customerId}}">Delete</a>
-						-->
+							th:href="@{'/claim/edit/' + ${claimd.claimId}+'/'+${claimd.customers.customerId}}">Edit</a>
+
 						<a style="background-color: #f8f9fa; font-size: 1rem; border-radius: .2rem; margin: .2rem; 
 	        				box-shadow: 0.1rem 0.1rem 0.5rem lightblue; padding: .5rem; text-decoration:none;"  
-							th:href="@{/Documents}">Upload Files</a>
+							th:href="@{'/Documents/new/'+${claimd.claimId}}">Upload Files</a>
 						
 					</td>
 				</tr>	
@@ -69,7 +61,7 @@
 	</div>
 			<script type="text/javascript">
 			function cancelForm() {
-				window.location="[[@{/}]]";
+				window.location="[[@{/customers}]]";
 			}
 		</script>		
 	</body>

@@ -36,7 +36,7 @@ public class claimController {
 		Optional<customer> liscustomers = crepo.findById(customerId);
 		model.addAttribute("liscustomers",liscustomers.get());
 		model.addAttribute("cutomer_id", customerId);
-		return "FrmAddDependent";
+		return "FrmAddClaim";
 	}
 	
 	@PostMapping("/claim/save")
@@ -64,7 +64,7 @@ public class claimController {
 		model.addAttribute("liscustomers",liscustomers);
 		
 		
-		return "FrmAddDependent";
+		return "FrmAddClaim";
 	}
 	
 //	@PostMapping("/upload")
