@@ -8,11 +8,11 @@
 	<body>
 		<div class= "container-fluid text-center">
 			<h1>[[${pageTitle}]]</h1>
-			<!--  <th:block th:each="claim1 : ${dpndt}"> 
-				<input type="hidden" th:field="*{claimId}" th:value="${claim1.customers.customerId}"/>
-			</th:block>  -->
 		</div>
-		<form th:action="@{/Document/save}" method="post" enctype="multipart/form-data" 
+
+		
+		<form th:action="@{'/Document/save/'+${claimId}}" th:object="${lstdocs}" method="post"  enctype="multipart/form-data" 
+					
 					style="background-color: #f8f9fa; 
 					max-width: 40%; 
 					margin: 0 auto; 
@@ -21,13 +21,32 @@
 					border-radius: 1rem;">
 			<div >
 				<h3>Upload your files</h3>
-				<p>
-					<input type="file" name="document" required>
-				</p>
-				<p>
-					<input type="submit" value="Upload" class="btn btn-primary">
-					<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
-				</p>
+
+
+				<div class="row border rounded">
+					<th:block th:each="docs : ${lstdocs}">
+						<div>
+							<div class="col">
+								<div> <img th:src="@{/images/file_icon.png}" width="50rem"/></div>
+								<a th:href="@{'/download?docuemntId=' +${docs.documentId}}">[[${docs.documentName}]]</a>
+							</div>
+							<div>
+								([[${#numbers.formatInteger(docs.documentSize, 4, 'COMMA')}]]  bytes)
+							</div>
+						</div>
+						
+					</th:block>
+				</div>
+				<div>
+					<p>
+						<input type="file" name="document" required>
+					</p>
+	
+					<p>
+						<input type="submit" value="Upload" class="btn btn-primary">
+						<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+					</p>
+				</div>
 			</div>
 		</form>
 				<script type="text/javascript">

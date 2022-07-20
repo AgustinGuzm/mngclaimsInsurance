@@ -39,7 +39,7 @@ public class CustomerController {
 		
 	}
 	
-	@GetMapping("/customers/new/{claimId}")
+	@GetMapping("/customers/new")
 	public String AddNewCustomer(Model model) {
 		model.addAttribute("cstmr", new customer());
 		model.addAttribute("pageTitle", "Create a new customer");

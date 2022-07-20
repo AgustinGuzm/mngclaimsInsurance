@@ -61,6 +61,15 @@ public class Document {
 		this.content = content;
 	}
 
+	
+	
+	public Document(Integer documentId, String documentName, long documentSize) {
+		super();
+		this.documentId = documentId;
+		this.documentName = documentName;
+		this.documentSize = documentSize;
+	}
+
 	/**
 	 * @return the documentId
 	 */
