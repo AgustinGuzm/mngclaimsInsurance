@@ -40,16 +40,7 @@ public class customer {
 		private String email;//customer email address
 		@Column
 		private String phoneNumber;//customer phone number
-//		@Column
-//		private Date   enrolldate;// date when the customer was enrolled in the system
-//		@Column
-//		private String address;//customer physical address
-//		@Column
-//		private String cityAddress;//city of physical address
-//		@Column
-//		private String zipcodeAddress;//Zip-code of address
-//		@Column
-//		private String stateAddress;//State; department; province
+
 		@Column
 		private Boolean enrolled; // define is enrolled is active (true) or not enrolled(false)
 //		@Column

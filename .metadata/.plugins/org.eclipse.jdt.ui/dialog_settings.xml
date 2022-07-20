@@ -23,12 +23,14 @@
 		<item key="updateTextualMatches" value="false"/>
 		<item key="updateQualifiedNames" value="false"/>
 		<item key="patterns" value="*"/>
+		<item key="renameGetter" value="false"/>
+		<item key="renameSetter" value="false"/>
 	</section>
 	<section name="SourceActionDialog.methods">
 		<item key="VisibilityModifier" value="1"/>
 		<item key="FinalModifier" value="false"/>
 		<item key="SynchronizedModifier" value="false"/>
-		<item key="Comments" value="true"/>
+		<item key="Comments" value="false"/>
 		<item key="InstanceOf" value="false"/>
 		<item key="Blocks" value="false"/>
 		<item key="Objects.equals &amp; Objects.hash" value="false"/>
@@ -54,7 +56,7 @@
 		<item key="VisibilityModifier" value="1"/>
 		<item key="FinalModifier" value="false"/>
 		<item key="SynchronizedModifier" value="false"/>
-		<item key="Comments" value="true"/>
+		<item key="Comments" value="false"/>
 	</section>
 	<section name="AddUnimplementedConstructorsDialog">
 		<item key="OmitCallToSuper" value="false"/>

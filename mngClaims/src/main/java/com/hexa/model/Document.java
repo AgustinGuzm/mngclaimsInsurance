@@ -22,7 +22,7 @@ public class Document {
 	
 	@ManyToOne //(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //relationship many claims to one customer
 	@JoinColumn(name = "claimId")
-	private claim claims;
+	private claim claimsr;
 	
 	@Column(length =512,nullable= false)
 	private String documentName;
@@ -34,122 +34,66 @@ public class Document {
 	
 	private byte[] content;
 
-	/**
-	 * 
-	 */
 	public Document() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param documentId
-	 * @param claims
-	 * @param documentName
-	 * @param documentSize
-	 * @param uploadTime
-	 * @param content
-	 */
-	public Document(Integer documentId, claim claims, String documentName, long documentSize, Date uploadTime,
+	public Document(Integer documentId, claim claimsr, String documentName, long documentSize, Date uploadTime,
 			byte[] content) {
 		super();
 		this.documentId = documentId;
-		this.claims = claims;
+		this.claimsr = claimsr;
 		this.documentName = documentName;
 		this.documentSize = documentSize;
 		this.uploadTime = uploadTime;
 		this.content = content;
 	}
 
-	
-	
-	public Document(Integer documentId, String documentName, long documentSize) {
-		super();
-		this.documentId = documentId;
-		this.documentName = documentName;
-		this.documentSize = documentSize;
-	}
-
-	/**
-	 * @return the documentId
-	 */
 	public Integer getDocumentId() {
 		return documentId;
 	}
 
-	/**
-	 * @param documentId the documentId to set
-	 */
 	public void setDocumentId(Integer documentId) {
 		this.documentId = documentId;
 	}
 
-	/**
-	 * @return the claims
-	 */
-	public claim getClaims() {
-		return claims;
+	public claim getClaimsr() {
+		return claimsr;
 	}
 
-	/**
-	 * @param claims the claims to set
-	 */
-	public void setClaims(claim claims) {
-		this.claims = claims;
+	public void setClaimsr(claim claimsr) {
+		this.claimsr = claimsr;
 	}
 
-	/**
-	 * @return the documentName
-	 */
 	public String getDocumentName() {
 		return documentName;
 	}
 
-	/**
-	 * @param documentName the documentName to set
-	 */
 	public void setDocumentName(String documentName) {
 		this.documentName = documentName;
 	}
 
-	/**
-	 * @return the documentSize
-	 */
 	public long getDocumentSize() {
 		return documentSize;
 	}
 
-	/**
-	 * @param documentSize the documentSize to set
-	 */
 	public void setDocumentSize(long documentSize) {
 		this.documentSize = documentSize;
 	}
 
-	/**
-	 * @return the uploadTime
-	 */
 	public Date getUploadTime() {
 		return uploadTime;
 	}
 
-	/**
-	 * @param uploadTime the uploadTime to set
-	 */
 	public void setUploadTime(Date uploadTime) {
 		this.uploadTime = uploadTime;
 	}
 
-	/**
-	 * @return the content
-	 */
 	public byte[] getContent() {
 		return content;
 	}
 
-	/**
-	 * @param content the content to set
-	 */
 	public void setContent(byte[] content) {
 		this.content = content;
 	}
@@ -158,7 +102,7 @@ public class Document {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((claims == null) ? 0 : claims.hashCode());
+		result = prime * result + ((claimsr == null) ? 0 : claimsr.hashCode());
 		result = prime * result + Arrays.hashCode(content);
 		result = prime * result + ((documentId == null) ? 0 : documentId.hashCode());
 		result = prime * result + ((documentName == null) ? 0 : documentName.hashCode());
@@ -176,10 +120,10 @@ public class Document {
 		if (getClass() != obj.getClass())
 			return false;
 		Document other = (Document) obj;
-		if (claims == null) {
-			if (other.claims != null)
+		if (claimsr == null) {
+			if (other.claimsr != null)
 				return false;
-		} else if (!claims.equals(other.claims))
+		} else if (!claimsr.equals(other.claimsr))
 			return false;
 		if (!Arrays.equals(content, other.content))
 			return false;
@@ -201,13 +145,6 @@ public class Document {
 		} else if (!uploadTime.equals(other.uploadTime))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Document [documentId=" + documentId + ", claims=" + claims + ", documentName=" + documentName
-				+ ", documentSize=" + documentSize + ", uploadTime=" + uploadTime + ", content="
-				+ Arrays.toString(content) + "]";
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.hexa.controller;
 
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hexa.model.Document;
 import com.hexa.model.claim;
+import com.hexa.repositories.ClaimRepository;
+//import com.hexa.model.claim;
 import com.hexa.services.CustomerNotFoundExecption;
 import com.hexa.services.DocumentService;
 
@@ -28,6 +30,8 @@ public class DocumentController {
 
 	@Autowired
 	private DocumentService documentservice;
+	@Autowired
+	private ClaimRepository crepo;
 	
 	@GetMapping("/Documents")
 	public String showClaimList(Model model) {
@@ -38,29 +42,33 @@ public class DocumentController {
 	
 	
 	@GetMapping("/Documents/new/{claimId}")
-	public String uploadDocuments(@PathVariable("claimId") Integer claimId, Model model) throws CustomerNotFoundExecption{
-		Optional<Document> lstdocs;
+	public String uploadDocuments(@PathVariable("claimId") Integer claimId, Model model){
+		
 		model.addAttribute("docs", new Document());
-		lstdocs = documentservice.ListDocsByClaimId(claimId);
-		model.addAttribute("lstdocs",lstdocs.get());
-		model.addAttribute("claim_id", claimId);
+		List<Document> lstdocs = documentservice.ListDocsByClaimId(claimId);
+		Optional<claim> dpndt = crepo.findById(claimId);
+//		model.addAttribute("lstdocs",lstdocs.get());
+		model.addAttribute("lstdocs",lstdocs);
+		model.addAttribute("dpndt", dpndt);
+		model.addAttribute("claminId", claimId);
 		model.addAttribute("pageTitle", "Upload a new File");
 		
 		return "Documents";
 	}
 	@PostMapping("/Document/save/{claimId}")
-	public String SaveDocument( @RequestParam("document") MultipartFile multipartFile, @RequestParam("claimId") Integer claimId,Document docs, RedirectAttributes ra) {
-		documentservice.Uploadfile( multipartFile, docs, claimId);
+	public String SaveDocument( @RequestParam("document") MultipartFile multipartFile, @Param("claimId") Integer claimId,Document docs, RedirectAttributes ra, Model model) {
+		System.out.println("THE CLAIM ID IS..." + claimId);
+		documentservice.Uploadfile( multipartFile, docs, claimId, model);
 		ra.addFlashAttribute("message", "The File has been upload successfully");
 		return "redirect:/customers";
 	}
 	
 	
 	@GetMapping("/download")
-	public void downloadFile(@Param("documentId") Integer documentId, HttpServletResponse response) throws CustomerNotFoundExecption, IOException {
+	public void downloadFile(@Param("documentId") Integer documentId, HttpServletResponse response, Model model) throws Exception  {
 		
 
-			documentservice.download(documentId, response);
+			documentservice.download(documentId, response, model);
 
 		
 		

@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hexa.model.Document;
 import com.hexa.model.claim;
+import com.hexa.repositories.ClaimRepository;
 import com.hexa.repositories.DocumentRepository;
 
 @Service
@@ -23,11 +25,14 @@ public class DocumentService {
 
 	@Autowired
 	private DocumentRepository repo;
+	@Autowired
+	private ClaimRepository clarepo;
 
-	public void Uploadfile( MultipartFile multipartFile, Document docs, Integer claimId) {
+	public void Uploadfile( MultipartFile multipartFile, Document docs, Integer claimId, Model model) {
 		
-		//System.out.println(docs.getClaims().getClaimId());
-		
+//		claim Claim = new  claim();
+//		Claim.setClaimId(claimId);
+//		docs.setClaims(Claim);
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		
 		docs.setDocumentName(fileName);
@@ -41,16 +46,21 @@ public class DocumentService {
 		docs.setDocumentSize(multipartFile.getSize());;
 		docs.setUploadTime(new Date());
 		repo.save(docs);
-		
-		
+//		Document savedoc = repo.save(docs);
+//		claim Claim= clarepo.findById(claimId).get();
+//		savedoc.setClaims(Claim);
+//		repo.save(savedoc);
 	}
-
-	public Optional<Document> ListDocsByClaimId(Integer claimId) throws CustomerNotFoundExecption																							{
-		Optional<Document> result= repo.findById(claimId);
-		if(result.isPresent()) {
-			return Optional.of(result.get());
-		}
-		throw new CustomerNotFoundExecption("No document with claimId "+claimId+"was found");
+//throws CustomerNotFoundExecption
+	public List<Document> ListDocsByClaimId(Integer claimId) {
+		List<Document> result= repo.findByClaimId(claimId);
+//		if(result.isPresent()) {
+//			return Optional.of(result.get());
+//		}else {
+//			return Optional.empty();//Optional.empty();
+//			//return Optional.ofNullable(result.get());
+//		}
+		return result;
 		
 	}
 	
@@ -59,12 +69,12 @@ public class DocumentService {
 		return lstdocs;
 	}
 
-	public void download(Integer documentId, HttpServletResponse response) throws CustomerNotFoundExecption, IOException  {
+	public void download(Integer documentId, HttpServletResponse response, Model model) throws Exception   {
 		
 		Optional<Document> result = repo.findById(documentId);
 		
 		if(!result.isPresent()) {
-			throw new CustomerNotFoundExecption("Could not find document");
+			throw new Exception("Could not find document");
 		}
 		
 		Document document = result.get();
@@ -81,5 +91,23 @@ public class DocumentService {
 
 
 	}
+//	 @GetMapping("/downloadfile")
+//	 public void downloadFile(@Param("id") Long id , Model model, HttpServletResponse response) 
+//			 throws IOException {
+//		  Optional<Student> temp = service.findStudentById(id);
+//		  if(temp!=null) {
+//		   Student student = temp.get();
+//		   response.setContentType("application/octet-stream");
+//		   String headerKey = "Content-Disposition";
+//		   String headerValue = "attachment; filename = "+student.getProfilePicture();
+//		   response.setHeader(headerKey, headerValue);
+//		   ServletOutputStream outputStream = response.getOutputStream();
+//		   outputStream.write(student.getContent());
+//		   outputStream.close();
+//		  }
+//	 }
+	
+	
+	
 	
 }

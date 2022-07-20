@@ -8,6 +8,12 @@
 	<body>
 		<div class= "container-fluid text-center">
 			<h1>[[${pageTitle}]]</h1>
+			<h2>[[${claimId}]]</h2>
+			<!--  
+			<th:block th:each="claim1 : ${dpndt}"> 
+				<input type="hidden" th:field="*{claimId}" th:value="${claim1.claims.claimId}"/>
+			</th:block>
+			-->
 		</div>
 
 		
@@ -25,6 +31,8 @@
 
 				<div class="row border rounded">
 					<th:block th:each="docs : ${lstdocs}">
+							    <!--  <input type="hidden" th:field="*{claimsr}" th:value="${docs.claimsr.claimId}"/> -->
+							  <input type="hidden" th:field="*{DocumentName}" th:value="${docs.DocumentName}"/>
 						<div>
 							<div class="col">
 								<div> <img th:src="@{/images/file_icon.png}" width="50rem"/></div>
@@ -37,6 +45,7 @@
 						
 					</th:block>
 				</div>
+
 				<div>
 					<p>
 						<input type="file" name="document" required>
