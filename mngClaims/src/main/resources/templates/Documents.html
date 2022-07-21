@@ -5,7 +5,7 @@
 		<title>[[${pageTitle}]]</title>
 		<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	</head>
-	<body>
+	<body style="background: #89c0ec;">
 		<div class= "container-fluid text-center">
 			<h1>[[${pageTitle}]]</h1>
 			<h2>[[${claimId}]]</h2>
@@ -27,12 +27,15 @@
 					border-radius: 1rem;">
 			<div >
 				<h3>Upload your files</h3>
-
+				<div>
+					  <th:block th:each="doc : ${lsdocs}">
+						<!--  <input type="hidden" th:field="*{claimsnum}" th:value="${doc.claimsnum.claimId}"/> -->
+					</th:block>  
+				</div>
 
 				<div class="row border rounded">
 					<th:block th:each="docs : ${lstdocs}">
-							    <!--  <input type="hidden" th:field="*{claimsr}" th:value="${docs.claimsr.claimId}"/> -->
-							  <input type="hidden" th:field="*{DocumentName}" th:value="${docs.DocumentName}"/>
+
 						<div>
 							<div class="col">
 								<div> <img th:src="@{/images/file_icon.png}" width="50rem"/></div>
@@ -42,13 +45,13 @@
 								([[${#numbers.formatInteger(docs.documentSize, 4, 'COMMA')}]]  bytes)
 							</div>
 						</div>
-						
+						<!--  <input type="hidden" th:field="*{claimsnum}" th:value="${docs.claimsnum.claimId}"/> -->
 					</th:block>
 				</div>
 
 				<div>
 					<p>
-						<input type="file" name="document" required>
+						<input type="file" name="document" required class="btn btn-primary">
 					</p>
 	
 					<p>
@@ -56,6 +59,23 @@
 						<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
 					</p>
 				</div>
+				<!-- 
+					<div  style="display: none;" class="form-group row">
+						<label class="col-sm-4 col-form-label">Customer:</label>
+						<!--<div class="col-sm-8">   style="display: none;"   
+						<div >
+							<select th:field="*{claimsnum}" class="from-control " th:disable=true>
+								<th:block th:each="cla :${lstclaims}">
+									
+									<option th:text="${cla.claimId}+' '+${cla.ClaimDescription}" th:value="${cla.claimId}" th:disable=true/> 
+
+								</th:block>
+							</select>
+						</div>
+					</div>	
+				 -->
+				
+				
 			</div>
 		</form>
 				<script type="text/javascript">

@@ -45,11 +45,21 @@ public class DocumentController {
 	public String uploadDocuments(@PathVariable("claimId") Integer claimId, Model model){
 		
 		model.addAttribute("docs", new Document());
+		
+		Optional<Document> 	lsdoc= documentservice.findAllDocuments()
+				                    .stream()
+				                    .findFirst();
+		
 		List<Document> lstdocs = documentservice.ListDocsByClaimId(claimId);
-		Optional<claim> dpndt = crepo.findById(claimId);
-//		model.addAttribute("lstdocs",lstdocs.get());
+		
+		//Optional<Document> lstdoc = documentservice.OptDocsByClaimId(claimId);
+		
+		List<claim> lstclaims = crepo.findAll();  
+		//model.addAttribute("lstdocs",lstdocs.get());
 		model.addAttribute("lstdocs",lstdocs);
-		model.addAttribute("dpndt", dpndt);
+		model.addAttribute("lstdoc",lsdoc);
+		model.addAttribute("lstclaims", lstclaims);
+		
 		model.addAttribute("claminId", claimId);
 		model.addAttribute("pageTitle", "Upload a new File");
 		
@@ -68,11 +78,8 @@ public class DocumentController {
 	public void downloadFile(@Param("documentId") Integer documentId, HttpServletResponse response, Model model) throws Exception  {
 		
 
-			documentservice.download(documentId, response, model);
-
-		
-		
-		
+			//documentservice.download(documentId, response, model);
+	
 	}
 	
 }

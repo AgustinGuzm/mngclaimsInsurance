@@ -64,6 +64,19 @@ public class DocumentService {
 		
 	}
 	
+	public Optional<Document> OptDocsByClaimId(Integer claimId) {
+		Optional<Document> oresult= repo.OptDocsByClaimId(claimId);
+		if(oresult.isPresent()) {
+		return Optional.of(oresult.get());
+		}else {
+			//return Optional.empty();//Optional.empty();
+			oresult= repo.findAll().stream()
+					.findFirst();
+			return Optional.of(oresult.get());
+		}
+		//return oresult;
+	}
+	
 	public List<Document> findAllDocuments(){
 		List<Document> lstdocs = repo.findAll();
 		return lstdocs;
@@ -106,6 +119,7 @@ public class DocumentService {
 //		   outputStream.close();
 //		  }
 //	 }
+
 	
 	
 	

@@ -5,7 +5,7 @@
 		<title>[[${pageTitle}]]</title>
 		<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	</head>
-	<body >
+	<body style="background: #89c0ec;" >
 		<div class="container-fluid text-center">
 			<div><h2>[[${pageTitle}]]</h2></div>
 			<form th:action="@{/customers/save}" method="post" th:object="${cstmr}"

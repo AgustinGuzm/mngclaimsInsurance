@@ -5,7 +5,9 @@
 		<title>Claims</title>
 		<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	</head>
-	<body>
+	
+	<body style="background: #89c0ec;">
+	
 	<div class="container-fluid text-center">
 		<div><h2>Management Claims</h2></div>
 		
@@ -49,8 +51,8 @@
 						<a style="background-color: #f8f9fa; font-size: 1rem; border-radius: .2rem; margin: .2rem; 
 	        				box-shadow: 0.1rem 0.1rem 0.5rem lightblue; padding: .5rem; text-decoration:none;"  
 							th:href="@{'/Documents/new/' +${claim.claimId}}">Upload Files</a> 
-							<!--  th:href="@{/Documents}">Upload Files</a>  -->
-						
+							
+						<!-- th:href="@{/Documents}">Upload Files</a>  -->
 					</td>
 				</tr>	
 				</th:block>

@@ -6,7 +6,7 @@
 		<title>New Dependent</title>
 		<link rel="stylesheet" type="text/CSS" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	</head>
-	<body>
+	<body style="background: #89c0ec;">
 		<div class="container-fluid text-center">
 		
 			<div th:if="${dpndt.claimId == null}"><h2>New Claim</h2></div>
@@ -34,13 +34,15 @@
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label">Description:</label>
 						<div class="col-sm-8">
-							<input type="text" th:field="*{ClaimDescription}" 
-								class="from-control " required minlength="2" maxlength="245"/>
+
 						 	<br>
 
-         						<textarea rows = "6" cols = "60" name = "description">
-            					Enter details of claim here...
-         						</textarea>
+         						<textarea class="form-control" id="description" rows="5"
+		                              name="description"
+		                              placeholder="Description" th:field="*{ClaimDescription}"
+		                              required="required">
+                              </textarea>
+         						
         					<br>
 						</div>
 					</div>

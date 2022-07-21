@@ -1,6 +1,8 @@
 package com.hexa.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +33,7 @@ public class claim {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //auto generate the value for id
 	private Integer claimId; //Id to identify the dependent
 	
-	@ManyToOne //(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //relationship many claims to one customer
+	@ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL) //relationship many claims to one customer
 	@JoinColumn(name = "customerId")
 	private customer customers;
 	private String  ClaimDescription; //dependent first name

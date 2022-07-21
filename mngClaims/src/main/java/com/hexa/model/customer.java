@@ -45,7 +45,7 @@ public class customer {
 		private Boolean enrolled; // define is enrolled is active (true) or not enrolled(false)
 //		@Column
 //		@OneToMany( mappedBy = "customers")
-//		private List<dependent> dependents;
+//		private List<dependent> claims;
 		
 		
 		/**

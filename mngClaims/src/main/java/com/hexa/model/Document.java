@@ -3,8 +3,10 @@ package com.hexa.model;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,9 +22,9 @@ public class Document {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //auto generate the value for id
 	private Integer documentId;
 	
-	@ManyToOne //(fetch = FetchType.EAGER, cascade = CascadeType.ALL) //relationship many claims to one customer
+	@ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL) //relationship many claims to one customer
 	@JoinColumn(name = "claimId")
-	private claim claimsr;
+	private claim claimsnum;
 	
 	@Column(length =512,nullable= false)
 	private String documentName;
@@ -39,15 +41,28 @@ public class Document {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Document(Integer documentId, claim claimsr, String documentName, long documentSize, Date uploadTime,
+	public Document(Integer documentId, claim claimsnum, String documentName, long documentSize, Date uploadTime,
 			byte[] content) {
 		super();
 		this.documentId = documentId;
-		this.claimsr = claimsr;
+		this.claimsnum = claimsnum;
 		this.documentName = documentName;
 		this.documentSize = documentSize;
 		this.uploadTime = uploadTime;
 		this.content = content;
+	}
+
+	
+	
+	
+	
+	public Document(Integer documentId, claim claimsr, String documentName, long documentSize, Date uploadTime) {
+		super();
+		this.documentId = documentId;
+		this.claimsnum = claimsr;
+		this.documentName = documentName;
+		this.documentSize = documentSize;
+		this.uploadTime = uploadTime;
 	}
 
 	public Integer getDocumentId() {
@@ -58,12 +73,12 @@ public class Document {
 		this.documentId = documentId;
 	}
 
-	public claim getClaimsr() {
-		return claimsr;
+	public claim getClaimsnum() {
+		return claimsnum;
 	}
 
-	public void setClaimsr(claim claimsr) {
-		this.claimsr = claimsr;
+	public void setClaimsnum(claim claimsnum) {
+		this.claimsnum = claimsnum;
 	}
 
 	public String getDocumentName() {
@@ -102,7 +117,7 @@ public class Document {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((claimsr == null) ? 0 : claimsr.hashCode());
+		result = prime * result + ((claimsnum == null) ? 0 : claimsnum.hashCode());
 		result = prime * result + Arrays.hashCode(content);
 		result = prime * result + ((documentId == null) ? 0 : documentId.hashCode());
 		result = prime * result + ((documentName == null) ? 0 : documentName.hashCode());
@@ -120,10 +135,10 @@ public class Document {
 		if (getClass() != obj.getClass())
 			return false;
 		Document other = (Document) obj;
-		if (claimsr == null) {
-			if (other.claimsr != null)
+		if (claimsnum == null) {
+			if (other.claimsnum != null)
 				return false;
-		} else if (!claimsr.equals(other.claimsr))
+		} else if (!claimsnum.equals(other.claimsnum))
 			return false;
 		if (!Arrays.equals(content, other.content))
 			return false;
