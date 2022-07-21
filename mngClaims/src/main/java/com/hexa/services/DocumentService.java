@@ -45,13 +45,14 @@ public class DocumentService {
 		
 		docs.setDocumentSize(multipartFile.getSize());;
 		docs.setUploadTime(new Date());
-		repo.save(docs);
-//		Document savedoc = repo.save(docs);
-//		claim Claim= clarepo.findById(claimId).get();
-//		savedoc.setClaims(Claim);
-//		repo.save(savedoc);
+		
+		Document savedoc = repo.save(docs);
+		claim Claim= clarepo.findById(claimId).get();
+		savedoc.setClaimsnum(Claim);
+		repo.save(savedoc);
 	}
-//throws CustomerNotFoundExecption
+
+	//throws CustomerNotFoundExecption
 	public List<Document> ListDocsByClaimId(Integer claimId) {
 		List<Document> result= repo.findByClaimId(claimId);
 //		if(result.isPresent()) {
@@ -67,14 +68,13 @@ public class DocumentService {
 	public Optional<Document> OptDocsByClaimId(Integer claimId) {
 		Optional<Document> oresult= repo.OptDocsByClaimId(claimId);
 		if(oresult.isPresent()) {
-		return Optional.of(oresult.get());
+			return Optional.of(oresult.get());
 		}else {
-			//return Optional.empty();//Optional.empty();
-			oresult= repo.findAll().stream()
-					.findFirst();
+
+			oresult= repo.findAll().stream().findFirst();
 			return Optional.of(oresult.get());
 		}
-		//return oresult;
+
 	}
 	
 	public List<Document> findAllDocuments(){

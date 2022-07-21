@@ -51,11 +51,7 @@ public class DocumentController {
 				                    .findFirst();
 		
 		List<Document> lstdocs = documentservice.ListDocsByClaimId(claimId);
-		
-		//Optional<Document> lstdoc = documentservice.OptDocsByClaimId(claimId);
-		
 		List<claim> lstclaims = crepo.findAll();  
-		//model.addAttribute("lstdocs",lstdocs.get());
 		model.addAttribute("lstdocs",lstdocs);
 		model.addAttribute("lstdoc",lsdoc);
 		model.addAttribute("lstclaims", lstclaims);
@@ -66,19 +62,19 @@ public class DocumentController {
 		return "Documents";
 	}
 	@PostMapping("/Document/save/{claimId}")
-	public String SaveDocument( @RequestParam("document") MultipartFile multipartFile, @Param("claimId") Integer claimId,Document docs, RedirectAttributes ra, Model model) {
+	public String SaveDocument( @RequestParam("document") MultipartFile multipartFile, @PathVariable("claimId") Integer claimId,Document docs, RedirectAttributes ra, Model model) {
 		System.out.println("THE CLAIM ID IS..." + claimId);
 		documentservice.Uploadfile( multipartFile, docs, claimId, model);
 		ra.addFlashAttribute("message", "The File has been upload successfully");
 		return "redirect:/customers";
 	}
 	
-	
-	@GetMapping("/download")
-	public void downloadFile(@Param("documentId") Integer documentId, HttpServletResponse response, Model model) throws Exception  {
+    //@Param("documentId") Integer documentId
+	@GetMapping("/download/{documentId}")
+	public void downloadFile(@PathVariable("documentId") Integer documentId, HttpServletResponse response, Model model) throws Exception  {
 		
-
-			//documentservice.download(documentId, response, model);
+	
+			documentservice.download(documentId, response, model);
 	
 	}
 	

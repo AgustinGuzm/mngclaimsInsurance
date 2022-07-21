@@ -18,14 +18,12 @@ import lombok.Setter;
 
 
 //@Data
-//@NoArgsConstructor
+//@Setter
+//@Getter
 //@AllArgsConstructor
+//@NoArgsConstructor
 @Entity
 @Table(name = "claim")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class claim {
 
 	// Define fields to use in the table dependents

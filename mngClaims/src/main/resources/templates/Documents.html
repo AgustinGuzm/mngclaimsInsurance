@@ -8,7 +8,7 @@
 	<body style="background: #89c0ec;">
 		<div class= "container-fluid text-center">
 			<h1>[[${pageTitle}]]</h1>
-			<h2>[[${claimId}]]</h2>
+			<h2>Claim Number :[[${claimId}]]</h2>
 			<!--  
 			<th:block th:each="claim1 : ${dpndt}"> 
 				<input type="hidden" th:field="*{claimId}" th:value="${claim1.claims.claimId}"/>
@@ -18,32 +18,39 @@
 
 		
 		<form th:action="@{'/Document/save/'+${claimId}}" th:object="${lstdocs}" method="post"  enctype="multipart/form-data" 
-					
 					style="background-color: #f8f9fa; 
-					max-width: 40%; 
+					max-width: 80%; 
 					margin: 0 auto; 
 					box-shadow: 1.5rem 1.5rem .1rem lightblue; 
 					padding: .5rem;
 					border-radius: 1rem;">
 			<div >
-				<h3>Upload your files</h3>
+				<h3>Uploaded Files</h3>
 				<div>
 					  <th:block th:each="doc : ${lsdocs}">
 						<!--  <input type="hidden" th:field="*{claimsnum}" th:value="${doc.claimsnum.claimId}"/> -->
 					</th:block>  
 				</div>
-
-				<div class="row border rounded">
+                  <!-- class="row border rounded" -->
+				<div class="row border rounded" 
+				      Style="padding: .5rem; 
+				      border-radius: 1rem;
+				      margin: 3rem 6rem 3rem 3rem;">
 					<th:block th:each="docs : ${lstdocs}">
 
 						<div>
-							<div class="col">
+							<div class=" row border rounded col"
+									Style="padding: .5rem; 
+				      				border-radius: 1rem;
+				      				margin: 1rem 1rem .05rem 2rem;">
 								<div> <img th:src="@{/images/file_icon.png}" width="50rem"/></div>
-								<a th:href="@{'/download?docuemntId=' +${docs.documentId}}">[[${docs.documentName}]]</a>
-							</div>
+								<!--  <a th:href="@{'/download?docuemntId=' +${docs.documentId}}">[[${docs.documentName}]]</a> -->
+								<a th:href="@{'/download/' +${docs.documentId}}">[[${docs.documentName}]]</a>
 							<div>
 								([[${#numbers.formatInteger(docs.documentSize, 4, 'COMMA')}]]  bytes)
 							</div>
+							</div>
+
 						</div>
 						<!--  <input type="hidden" th:field="*{claimsnum}" th:value="${docs.claimsnum.claimId}"/> -->
 					</th:block>
@@ -59,22 +66,7 @@
 						<button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
 					</p>
 				</div>
-				<!-- 
-					<div  style="display: none;" class="form-group row">
-						<label class="col-sm-4 col-form-label">Customer:</label>
-						<!--<div class="col-sm-8">   style="display: none;"   
-						<div >
-							<select th:field="*{claimsnum}" class="from-control " th:disable=true>
-								<th:block th:each="cla :${lstclaims}">
-									
-									<option th:text="${cla.claimId}+' '+${cla.ClaimDescription}" th:value="${cla.claimId}" th:disable=true/> 
-
-								</th:block>
-							</select>
-						</div>
-					</div>	
-				 -->
-				
+			
 				
 			</div>
 		</form>

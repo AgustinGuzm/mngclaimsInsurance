@@ -15,15 +15,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 //@Data
-//@NoArgsConstructor
+//@Setter
+//@Getter
 //@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 @Entity
 @Table(name = "customer")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
 public class customer {
 	
 	   // Define fields to use in the table
