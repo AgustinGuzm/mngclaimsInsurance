@@ -24,20 +24,20 @@
 	<div class="container-fluid text-center table-responsive">
 		<form th:action="@{/customers}">
 			<div class="form-group row">
-				
+				<!--  
 				<div class="col-sm-4 text-left" >
 					<label class="col-sm-4 col-form-label">Filter by First or Last Name:</label>
 					<input id="txtsearh" type="text" name="keyword" class="from-control"/>
-					<!--  <button type="button" class="btn btn-secondary m-2">Search</button> -->
+					<!--  <button type="button" class="btn btn-secondary m-2">Search</button> --
 					
 				</div>
-				
+				-->
 			</div>
 			<!--  <label>Filer by Fisrt Name or Last Name</label>
 			<input id="txtsearh" type="text" name="keyword">
 			-->
 		</form>
-		<table class="table table-bordered table-striped table table-hover "> 
+		<table class="table table-bordered table-striped table table-hover " id="customerTable"> 
 			<thead class="thead-dark">
 			<tr>
 				<!-- <th>Customer ID</th>  -->
@@ -88,6 +88,21 @@
 			function cancelForm() {
 				window.location="[[@{/}]]";
 			}
-		</script>	
+		</script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#customerTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] /* 1st one, start by the right */
+    				}]
+				});
+			})
+		</script>
+		
+			
 </body>
 </html>
