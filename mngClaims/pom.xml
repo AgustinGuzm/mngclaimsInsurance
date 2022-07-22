@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>mngclaims</name>
-	<description>Insurance Claims Management </description>
+	<description>Customer Insurance Claims Management </description>
 	<properties>
 		<java.version>8</java.version>
 	</properties>
